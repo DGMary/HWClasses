@@ -1,10 +1,70 @@
 //here logic goes
 
-// 1. вывести в браузер каждого актера асинхронно используя setTimeout и appendChild
-// 2. вывести в браузер каждого актера в обратном порядке  используя setTimeout и appendChild - использование цикла for - запрещено
+// сделать  html component который повторяет логику  <select> в простешем случае
 
-//получаем html элемент куда мы выводим результат
-// const actorsListContainer = document.querySelector('#actors-list');
+//appendChild soulution
+const actorsListContainer = document.querySelector('#actors-list');
+
+function showActorsAsync (reverse) {
+    actors.forEach(addActorElement);
+}
+
+
+function addActorElement (actor, i) {
+    let actorHtmlElement = document.createElement('div');
+    actorHtmlElement.classList.add('colored');
+    if (i !== 0) {
+        actorHtmlElement.classList.add('hidden');
+    } else {
+        actorHtmlElement.classList.add('active');
+    }
+    actorHtmlElement.textContent = `${actor.firstName} ${actor.lastName}`;
+    actorsListContainer.appendChild(actorHtmlElement);
+}
+showActorsAsync();
+const button = document.querySelector('#show-button');
+// button.onclick = function handler(e) {
+//     showActorsAsync(true);
+// }
+
+// document.querySelector('#main').onclick = function handler(e) {
+//     console.log(this);
+//     this.style.color = '#0000FF';
+//     showActorsAsync(true);
+// }
+
+
+var main  = document.querySelector('#main')
+
+
+
+
+var actorsEl = document.querySelectorAll('.actor');
+
+// actorsEl.forEach(function (el) {
+//     el.addEventListener('click', actorHandler);
+// });
+
+// function actorHandler (e) {
+    // actorsEl.forEach(function (el) {
+    //     el.classList.remove('colored');
+    // });
+    // e.target.classList.add('colored');
+// }
+
+const actorsListEl = document.querySelector('#actors-list');
+
+actorsListEl.addEventListener('click', function (e) {
+    actorsEl.forEach(function (el) {
+        el.classList.remove('colored');
+    });
+    e.target.classList.add('colored');
+    console.log(e.currentTarget);
+});
+
+
+
+
 
 
 // innerHTML solution
@@ -18,15 +78,7 @@
 //изменяем содержимое html элемента 
 //actorsListContainer.innerHTML = resultedHTML;
 
-//appendChild soulution
-// const actorsListContainer = document.querySelector('#actors-list');
 
-// actors.forEach(function (actor) {
-//     let actorHtmlElement = document.createElement('div');
-//     actorHtmlElement.classList.add('colored');
-//     actorHtmlElement.textContent = `${actor.firstName} ${actor.lastName}`;
-//     actorsListContainer.appendChild(actorHtmlElement);
-// });
 
 //documentFragment solution
 // let documentFragment = document.createDocumentFragment();
