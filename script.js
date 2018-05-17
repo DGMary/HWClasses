@@ -10,19 +10,57 @@ function showActorsAsync (reverse) {
 }
 
 
-function addActorElement (actor, i) {
-    let actorHtmlElement = document.createElement('div');
-    actorHtmlElement.classList.add('colored');
-    if (i !== 0) {
+//showActorsAsync();
+
+const result = document.querySelector('#result');
+let activeIndex = 0;
+let isOpen = false;
+function initializeSelect(arr) {
+    arr.forEach(function (actor, i) {
+        let actorHtmlElement = document.createElement('div');
+        actorHtmlElement.textContent = `${actor.firstName} ${actor.lastName}`;
         actorHtmlElement.classList.add('hidden');
-    } else {
-        actorHtmlElement.classList.add('active');
-    }
-    actorHtmlElement.textContent = `${actor.firstName} ${actor.lastName}`;
-    actorsListContainer.appendChild(actorHtmlElement);
+        actorHtmlElement.classList.add('option');
+
+        result.appendChild(actorHtmlElement);
+        
+        if (i === activeIndex) {
+            let activeActorElement = document.createElement('div');
+            activeActorElement.textContent = `${actor.firstName} ${actor.lastName}`;
+            activeActorElement.classList.add('active');
+            result.insertBefore(activeActorElement, result.firstElementChild);
+            activeActorElement.addEventListener('click', toggleSelect);
+        }
+    });
 }
-showActorsAsync();
-const button = document.querySelector('#show-button');
+function toggleSelect (e) {
+    isOpen = !isOpen;
+    document.querySelectorAll('.option').forEach(function (option) {
+        if (isOpen === true) {
+           option.classList.remove('hidden'); 
+           document.querySelector('.active').classList.add('blurred');
+        } else {
+            option.classList.add('hidden');  
+            document.querySelector('.active').classList.remove('blurred');
+        }
+    });
+    e.stopPropagation();
+}
+
+result.addEventListener('click', function (e) {
+    if (e.target === e.currentTarget) {
+        return;
+    }
+    let content = e.target.textContent;
+    document.querySelector('.active').textContent = content;
+    toggleSelect(e);
+});
+
+
+
+initializeSelect(actors);
+
+
 // button.onclick = function handler(e) {
 //     showActorsAsync(true);
 // }
