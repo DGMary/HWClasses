@@ -33,13 +33,13 @@ class MovieSession{
     }
 }
 
-class d2Session extends MovieSession{
+class D2Session extends MovieSession{
     constructor (film, poster , day , time , format){
         super(film, poster , day , time );
         this.format = '2D';
     }
 }
-class d3Session extends MovieSession{
+class D3Session extends MovieSession{
     constructor (film, poster , day , time , format){
         super(film, poster , day , time );
         this.format = '3D';
@@ -94,12 +94,13 @@ function Chocolate (name, price, percentage, weight) {
         this.weight = weight;
 }
 Chocolate.prototype = Object.create(Food.prototype);
+Chocolate.prototype.constructor = Chocolate;
 Chocolate.prototype.calculateCallories = function() {
         const cals = Chocolate.calloriesPercentageMap[this.percentage];
         if (cals) {
             return (cals/100) * this.weight
         }
-}
+};
 Chocolate.calloriesPercentageMap = { // каллории на сто грамм в зависимости от процента шоколада
     72: 300,
     85: 350,
