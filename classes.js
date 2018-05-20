@@ -65,6 +65,28 @@
 
 /* Design Class Movie */
 
+class Movie {
+    constructor(name , poster, description , year, country , genre, duration , trailer){
+       this.name = name ;
+       this.poster =  poster;
+       this.description = description;
+       this.year =  year;
+       this.country =  country;
+       this.genre =  genre;
+       this.duration =  duration;
+       this.trailer = trailer;
+    }
+    getInfo () {
+        return (this.name + this.poster + this.description + this.year + this.country + this.genre + this.duration);
+        console.log(this.name);
+    }
+    showTrailer(){
+        return this.trailer;
+    }
+}
+console.log(Movie());
+
+
 /* Design Class MovieSession and inherited classes 2d and 3dSession */
 
 
@@ -96,40 +118,43 @@
 // }
 // var rect = new Rectangle(2, 3)
 
+
+
 /* Rewrite next classes to the ES5 syntax */
 
-class Food {
-    constructor(name, price) {
-        this.name = name;
-        this.price = price;
-    }
-    getPrice () {
-        return this.price;
-    }
-    getName () {
-        return this.name;
-    }
-}
+// class Food {
+//     constructor(name, price) {
+//         this.name = name;
+//         this.price = price;
+//     }
+//     getPrice () {
+//         return this.price;
+//     }
+//     getName () {
+//         return this.name;
+//     }
+// }
 
-class Chocolate extends Food {
-    constructor (name, price, percentage, weight) {
-        super(name, price, weight);
-        this.percentage = percentage; 
-        this.weight = weight;
-    }
-    calculateCallories() {
-        const cals = Chocolate.calloriesPercentageMap[this.percentage];
-        if (cals) {
-            return (cals/100) * this.weight
-        }
-    }
-}
-Chocolate.calloriesPercentageMap = { // каллории на сто грамм в зависимости от процента шоколада
-    72: 300,
-    85: 350,
-    60: 250
-}
-var alenka = new Chocolate('alenka', 40, 72, 130);
+// class Chocolate extends Food {
+//     constructor (name, price, percentage, weight) {
+//         super(name, price, weight);
+//         this.percentage = percentage; 
+//         this.weight = weight;
+//     }
+//     calculateCallories() {
+//         const cals = Chocolate.calloriesPercentageMap[this.percentage];
+//         if (cals) {
+//             return (cals/100) * this.weight
+//         }
+//     }
+// }
+// Chocolate.calloriesPercentageMap = { // каллории на сто грамм в зависимости от процента шоколада
+//     72: 300,
+//     85: 350,
+//     60: 250
+// }
+// var alenka = new Chocolate('alenka', 40, 72, 130);
+
 
 
 
